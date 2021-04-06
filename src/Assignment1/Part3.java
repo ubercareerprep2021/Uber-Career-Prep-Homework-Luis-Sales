@@ -1,6 +1,9 @@
 package Assignment1;
 
+import java.util.ArrayDeque;
 import java.util.EmptyStackException;
+import java.util.NoSuchElementException;
+import java.util.Queue;
 
 public class Part3 {
 
@@ -72,6 +75,61 @@ public class Part3 {
         }
     }
 
+    static class MyQueue<T> {
+        private T[] array;
+        private int enqueueIndex;
+        private int dequeueIndex;
+
+        MyQueue() {
+            array = (T[]) new Object[8];
+            enqueueIndex = 0;
+            dequeueIndex = 0;
+        }
+
+        T[] resize () {
+            int len = array.length;
+            T[] newArray = (T[]) new Object[len * 2];
+
+            int j = 0;
+            for (int i = dequeueIndex; i < enqueueIndex; i++) {
+                newArray[j++] = array[i];
+            }
+            enqueueIndex -= dequeueIndex;
+            dequeueIndex = 0;
+            return newArray;
+        }
+
+        void enqueue (T val) {
+            if (enqueueIndex == array.length) {
+                array = resize();
+            }
+            array[enqueueIndex++] = val;
+        }
+
+        T dequeue() {
+            if (enqueueIndex == dequeueIndex) throw new NoSuchElementException();
+            return array[dequeueIndex++];
+        }
+
+        T front() {
+            if (enqueueIndex == dequeueIndex) throw new NoSuchElementException();
+            return array[dequeueIndex];
+        }
+
+        T rear() {
+            if (enqueueIndex == dequeueIndex) throw new NoSuchElementException();
+            return array[enqueueIndex-1];
+        }
+
+        boolean isEmpty() {
+            return enqueueIndex == dequeueIndex;
+        }
+
+        int size() {
+            return enqueueIndex - dequeueIndex;
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Testing stack of integers: ");
         MyStack<Integer> stack = new MyStack<>() {
@@ -126,6 +184,37 @@ public class Part3 {
         System.out.println(stack2.min());
         stack2.pop();
         System.out.println(stack2.min());
+
+        System.out.println("Testing queue of integers:");
+        MyQueue<Integer> myQueue = new MyQueue<>();
+        myQueue.enqueue(1);
+        myQueue.enqueue(3);
+        myQueue.enqueue(4);
+        System.out.println(myQueue.front());
+        System.out.println(myQueue.rear());
+        System.out.println(myQueue.size());
+
+        System.out.println(myQueue.dequeue());
+        System.out.println(myQueue.dequeue());
+        System.out.println(myQueue.dequeue());
+        try {
+            System.out.println(myQueue.dequeue());
+        } catch (NoSuchElementException e) {
+            System.out.println("Empty queue!");
+        }
+
+        for (int i = 0; i < 16; i++) {
+            myQueue.enqueue(i);
+        }
+        while (!myQueue.isEmpty()) {
+            System.out.println(myQueue.dequeue());
+        }
+        try {
+            System.out.println(myQueue.dequeue());
+        } catch (NoSuchElementException e) {
+            System.out.println("Empty queue!");
+        }
+
     }
 
 }
