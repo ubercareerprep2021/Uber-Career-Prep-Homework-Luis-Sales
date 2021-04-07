@@ -84,6 +84,9 @@ public class Part4 {
                 for (int i = 0; i < index-1; i++) {
                     temp = temp.next;
                 }
+                if (temp.next == end) {
+                    end = temp;
+                }
                 temp.next = temp.next.next;
             }
             size--;
