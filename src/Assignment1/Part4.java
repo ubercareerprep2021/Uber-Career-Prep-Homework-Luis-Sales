@@ -78,6 +78,7 @@ public class Part4 {
         void remove(int index) {
             if (size == 0 || index >= size || index < 0) return;
             if (index == 0) {
+                if (end == start.next) end = start;
                 start.next = start.next.next;
             } else {
                 MyNode temp = start.next;
