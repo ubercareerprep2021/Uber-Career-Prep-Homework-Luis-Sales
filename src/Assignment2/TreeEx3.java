@@ -2,26 +2,27 @@ package Assignment2;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Queue;
 
-public class TreeEx2 {
+public class TreeEx3 {
 
-    static void printOrganizationStructure(OrganizationStructure org) {
+    static void printNumLevels(OrganizationStructure org) {
         Queue<Employee> queue = new ArrayDeque<>();
         queue.add(org.ceo);
 
+        int countLevels = 0;
+
         while (!queue.isEmpty()) {
             int size = queue.size();
-
+            countLevels++;
             for (int i = 0; i < size; i++) {
                 Employee currentEmployee = queue.poll();
-                System.out.println("Name: " + currentEmployee.name + ", Title: " + currentEmployee.title);
                 if (currentEmployee.directReports == null) continue;
                 queue.addAll(currentEmployee.directReports);
             }
-            System.out.println();
         }
+
+        System.out.println(countLevels);
     }
 
     public static void main(String[] args) {
@@ -42,8 +43,7 @@ public class TreeEx2 {
         cto.directReports = new ArrayList<>();
         cto.directReports.add(new Employee("E", "Manager"));
 
-        printOrganizationStructure(structure);
+        printNumLevels(structure);
     }
-
 
 }
