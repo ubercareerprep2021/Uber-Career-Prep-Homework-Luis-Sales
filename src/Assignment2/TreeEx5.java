@@ -41,7 +41,6 @@ public class TreeEx5 {
         }
 
         public long find(String name) {
-            if (root == null) return -1;
             return findHelper(name, root);
         }
 
