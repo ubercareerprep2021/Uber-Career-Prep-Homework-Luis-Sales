@@ -12,3 +12,7 @@ untitled.iml
 data.csv
 
 search.txt
+
+lib/
+
+out/production/untitled/META-INF/untitled.kotlin_module
