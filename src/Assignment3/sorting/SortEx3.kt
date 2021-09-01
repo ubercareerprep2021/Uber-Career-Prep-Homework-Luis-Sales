@@ -30,20 +30,3 @@ class SortEx3 {
     }
 
 }
-
-fun main() {
-    val sort = SortEx3()
-
-    val aStart = arrayListOf<Int>(1, 2, 6, 7, 8)
-    val b = intArrayOf(0, 1, 1, 2, 3)
-
-    for (i in b.indices) {
-        aStart.add(0)
-    }
-
-    val a = aStart.toIntArray()
-
-    sort.mergeTwoArrays(a, b)
-
-    println(a.contentToString())
-}
