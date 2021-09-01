@@ -2,7 +2,7 @@ package Assignment3.sorting
 
 class SortEx4 {
 
-    fun groupAnagrams(array: Array<String>) : List<List<String>> {
+    fun groupAnagrams(array: Array<String>) : Array<Array<String>> {
         val anagramToEquivalentsMap = HashMap<String, MutableList<String>>()
 
         for (string in array) {
@@ -18,11 +18,11 @@ class SortEx4 {
             returnList.add(it.value)
         }
 
-        return returnList
+        val returnArray = Array<Array<String>>(returnList.size) {
+            returnList[it].toTypedArray()
+        }
+
+        return returnArray
     }
-
-}
-
-fun main() {
 
 }
