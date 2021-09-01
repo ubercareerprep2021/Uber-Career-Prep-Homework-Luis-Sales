@@ -16,3 +16,5 @@ search.txt
 lib/
 
 out/production/untitled/META-INF/untitled.kotlin_module
+/.idea/
+out/test/untitled/META-INF/untitled.kotlin_module
