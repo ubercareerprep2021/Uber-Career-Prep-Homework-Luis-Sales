@@ -8,7 +8,7 @@ import kotlin.math.abs
 
 internal class SearchEx3Test {
 
-    val search = SearchEx3()
+    private val search = SearchEx3()
 
     @Test
     fun testPow1() {
@@ -22,7 +22,7 @@ internal class SearchEx3Test {
 
     @Test
     fun testPow3() {
-        assert(abs(search.pow(0.2, 3) - 0.008) <= 0.000001)
+        assertEquals(0.008, search.pow(0.2, 3), 0.000001)
     }
 
     @Test
